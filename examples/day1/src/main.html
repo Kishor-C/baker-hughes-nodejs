@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button onclick = 'fetchData()'>CallApi</button>
+        <br />
+        <button onclick = 'test()'>PromiseButton</button>
+        <br />
+        <button onclick = 'testAsync()'>AsyncAwaitButton</button>
+    </div>
+    <div id = 'users'></div>
+    <script type = 'text/javascript'>
+        async function testAsync() {
+            let url = 'https://jsonplaceholder.typicode.com/users';
+            let res = await fetch(url);  // waits promise to settle
+            let value = await res.json();// waits promise to settle
+            document.querySelector('#users')
+                .textContent = JSON.stringify(value);
+        }
+        function test() {
+            let url = 'https://jsonplaceholder.typicode.com/users';
+            fetch(url)
+                .then(response => response.json())
+                .then(value => {
+                    let ele = document.querySelector('#users');
+                    ele.textContent = JSON.stringify(value);
+                });
+        }
+        function fetchData() {
+         let url = 'https://jsonplaceholder.typicode.com/users';
+         let xhr = new XMLHttpRequest();
+         xhr.open('GET', url, true);
+         xhr.send(); // sends the HTTP GET Request
+         // onreadystatechange callback is executed aysnc
+         // readyState 1 to 4
+         xhr.onreadystatechange = () => {
+            
+            if(xhr.readyState == 4) {
+                // responseText will have resonseContent
+                let response = xhr.responseText;
+                let ele = document
+                        .querySelector('#users');
+                ele.textContent = response;
+            }
+           
+         }
+        }
+    </script>
+</body>
+</html>
