@@ -1,5 +1,7 @@
-const dgram = require('node:dgram');
-const { Buffer } = require('node:buffer');
+import dgram from 'dgram';
+import { Buffer } from 'buffer';
+// const dgram = require('node:dgram');
+//const { Buffer } = require('node:buffer');
 
 const message = Buffer.from('Some bytes');
 const client = dgram.createSocket('udp4');

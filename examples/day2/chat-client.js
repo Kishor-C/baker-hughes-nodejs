@@ -1,4 +1,5 @@
-var net = require('net')
+// var net = require('net')
+import net from 'net';
 var client = net.connect({port : 5000},function(){
     console.log('connected to the server')
 })

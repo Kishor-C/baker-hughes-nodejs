@@ -1,6 +1,6 @@
 // Load the TCP Library
-net = require('net');
-
+//net = require('net');
+import net from 'net';
 // Keep track of the chat clients
 var clients = [];
 
